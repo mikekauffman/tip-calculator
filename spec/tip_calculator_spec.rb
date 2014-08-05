@@ -13,6 +13,6 @@ describe TipCalculator do
 
     tip_calculator = TipCalculator.new(sales_data, staff_data)
 
-    expect(tip_calculator.tips_for_date('2014-05-11')).to eq expected
+    expect(tip_calculator.tips_for_date('5-11-2014')).to eq expected
   end
 end

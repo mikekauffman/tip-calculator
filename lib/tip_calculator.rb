@@ -1,4 +1,5 @@
 require 'json'
+require 'date'
 
 class TipCalculator
   def initialize(path_to_sales_data, path_to_staff_data)
@@ -27,7 +28,7 @@ class TipCalculator
   end
 
   def sales_for(date)
-    @sales_hash.map { |sale| sale if sale["date"] == date }.compact
+    @sales_hash.map { |sale| sale if Date.parse(sale["date"]) == Date.strptime(date, '%m-%d-%Y') }.compact
   end
 
 end
