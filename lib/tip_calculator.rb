@@ -8,9 +8,8 @@ class TipCalculator
 
   def tips_for_date(date)
     h = {}
-    sales_for_date = @sales_hash.map { |sale| sale if sale["date"] == date }.compact
     @staff_hash.each do |server|
-      sales_for_date.each do |sales|
+      sales_for(date).each do |sales|
         if server["job_title"] == "server" && sales["server_id"] == server["id"]
           if h.has_key?(server["first_name"] + " " + server["last_name"])
             h[server["first_name"] + " " + server["last_name"]] += sales["tip"]
@@ -26,4 +25,9 @@ class TipCalculator
     end
     result
   end
+
+  def sales_for(date)
+    @sales_hash.map { |sale| sale if sale["date"] == date }.compact
+  end
+
 end
